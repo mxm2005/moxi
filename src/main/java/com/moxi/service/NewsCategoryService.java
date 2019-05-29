@@ -7,8 +7,10 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import com.moxi.model.NewsCategory;
+import org.springframework.stereotype.Component;
 
 @Mapper
+@Component
 public interface NewsCategoryService {
 	
 	@Select("SELECT * FROM `moxi`.`news_category` where id = #{id};")

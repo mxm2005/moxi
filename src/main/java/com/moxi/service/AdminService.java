@@ -5,8 +5,10 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import com.moxi.model.Admin;
+import org.springframework.stereotype.Component;
 
 @Mapper
+@Component
 public interface AdminService {
 
 	@Select("SELECT * FROM `moxi`.`admin` where userName = #{userName} and password = #{password} and state = 1;")

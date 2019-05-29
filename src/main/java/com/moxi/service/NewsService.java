@@ -9,17 +9,19 @@ import org.apache.ibatis.annotations.Update;
 
 import com.moxi.model.News;
 import com.moxi.util.Constant;
-	
+import org.springframework.stereotype.Component;
+
 @Mapper
+@Component
 public interface NewsService {
 	
-	@Select("SELECT * FROM MOXI.NEWS WHERE ID = #{id};")
+	@Select("SELECT * FROM moxi.news WHERE ID = #{id};")
 	News findById(News news);
 	
 	@Select({
 		"<script>",
-		"SELECT N.*,C.NAME AS CATEGORYNAME,C.IMAGE AS CATEGORYIMAGE FROM MOXI.NEWS N ",
-		"LEFT JOIN MOXI.NEWS_CATEGORY C ON N.CATEGORY = C.ID ",
+		"SELECT N.*,C.NAME AS CATEGORYNAME,C.IMAGE AS CATEGORYIMAGE FROM moxi.news N ",
+		"LEFT JOIN moxi.news_category C ON N.CATEGORY = C.ID ",
 		"WHERE N.STATE = 1 ",
 			"<when test='title!=null'>",
 				"AND N.TITLE LIKE CONCAT('%',#{title},'%')",
@@ -55,8 +57,8 @@ public interface NewsService {
 	
 	@Select({
 		"<script>",
-		"SELECT COUNT(*) FROM MOXI.NEWS N ",
-		"LEFT JOIN MOXI.NEWS_CATEGORY C ON N.CATEGORY = C.ID ",
+		"SELECT COUNT(*) FROM moxi.news N ",
+		"LEFT JOIN moxi.news_category C ON N.CATEGORY = C.ID ",
 		"WHERE N.STATE = 1 ",
 			"<when test='title!=null'>",
 				"AND N.TITLE LIKE CONCAT('%',#{title},'%')",
